@@ -1,0 +1,18 @@
+div {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Roboto', sans-serif;
+}
+img {
+    max-width: 80%;
+    height: auto;
+}
+
+body{
+    background-color: rgb(39, 39, 39); 
+    color:rgb(210, 210, 210);
+}
+
+.textcenter {
+    text-align: center;
+}
