@@ -22,7 +22,7 @@ import os
 DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.json")
 
 
-def add_to_json(data):
+def add_to_booking(data):
 
     with open(DB, 'r+') as f:
         file_data = json.load(f)
@@ -41,12 +41,41 @@ def create_db():
     dbdata = {
         "bookingDetails" :[
 
+        ],
+        "users": [
+
         ]
+            
 
     }
     print(DB)
     with open(DB, "w") as f:
         json.dump(dbdata, f, indent=4)
+
+
+def user_exists(username):
+    with open(DB, 'r') as f:
+        file_data = json.load(f)
+        for user in file_data["users"]:
+            if user["username"] == username:
+                return True
+    return False
+
+def add_user(data):
+
+    with open(DB, 'r+') as f:
+        file_data = json.load(f)
+        file_data["users"].append(data)
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
+        
+    
+
+
+
+
+
+
 
 if __name__ == "__main__":
     create_db()

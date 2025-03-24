@@ -24,6 +24,6 @@ def create_booking():
         'snum' : snum
     }
 
-    dbf.add_to_json(data)
+    dbf.add_to_booking(data)
     
     return jsonify({"message" : "it worked"}), 200

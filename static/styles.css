@@ -16,3 +16,9 @@ body{
 .textcenter {
     text-align: center;
 }
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}

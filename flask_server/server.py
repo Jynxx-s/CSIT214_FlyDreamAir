@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from loyalty import loyalty_bp
 from booking import booking_bp
 import requests as rqst
@@ -14,7 +14,7 @@ app.register_blueprint(booking_bp, url_prefix='/booking')
 @app.route('/')
 def home():
     return render_template('home.html')
-
+    
 
 
 
