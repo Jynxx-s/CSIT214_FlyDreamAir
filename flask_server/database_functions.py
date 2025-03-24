@@ -71,8 +71,13 @@ def add_user(data):
         
     
 
-
-
+def attempt_login(username, password):
+    with open(DB, 'r') as f:
+        file_data = json.load(f)
+        for i in file_data["users"]:
+            if i["username"] == username and i["password"] == password:
+                return True
+    return False
 
 
 

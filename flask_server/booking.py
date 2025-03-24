@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, jsonify
 import database_functions as dbf
+from login import login_required
 
 booking_bp = Blueprint('booking', __name__)
 
 
 @booking_bp.route('/')
+@login_required
 def booking_home():
     return render_template('booking.html')
 
