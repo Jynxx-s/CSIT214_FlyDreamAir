@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 from booking import booking_bp
 import requests as rqst
-import csv
+
 from login import login_required
 import database_functions as dbf
 
