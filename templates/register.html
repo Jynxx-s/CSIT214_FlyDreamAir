@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register User</title>
+
+    <link rel="stylesheet" href="../static/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .input-sized {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 15px;
+      }
+
+    </style>
+  </head>
+
+  <body style="" class="textcenter">
+    <div class="textcenter">
+      <form
+        id="register"
+        style="display: block; text-align: center; width: 50%; max-width: 600px"
+      >
+        <div class="input-container input-sized">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required
+            class="expand-on-hover"
+          />
+        </div>
+
+        <div class="input-container input-sized">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+            class="expand-on-hover"
+          />
+        </div>
+
+        <div class="input-container input-sized">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email@flydreamair.com"
+            required
+            class="expand-on-hover"
+          />
+        </div>
+
+        <div class="input-container input-sized">
+          <button type="submit" class="expand-on-hover">Register User</button>
+        </div>
+      </form>
+
+      <div id="feedbackmessage" class="textcenter"></div>
+    </div>
+    <script>
+      const feedbackmessage = document.getElementById("feedbackmessage");
+      document
+        .getElementById("register")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const email = document.getElementById("email").value;
+          fetch("/register/register_user", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password, email }),
+          })
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              }
+            })
+            .then((data) => {
+              feedbackmessage.textContent = data.message;
+            });
+        });
+    </script>
+  </body>
+</html>
