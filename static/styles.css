@@ -1,24 +1,34 @@
 div {
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Roboto', sans-serif;
-}
-img {
-    max-width: 80%;
-    height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Roboto", sans-serif;
 }
 
-body{
-    background-color: rgb(39, 39, 39); 
-    color:rgb(210, 210, 210);
+img {
+  max-width: 80%;
+  height: auto;
+}
+
+body {
+  background-color: rgb(39, 39, 39);
+  color: rgb(210, 210, 210);
 }
 
 .textcenter {
-    text-align: center;
+  text-align: center;
 }
 
 .input-container {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.expand-on-hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+.expand-on-hover:hover {
+  transform: scale(1.05);
+  /* Increases size by 5% */
 }

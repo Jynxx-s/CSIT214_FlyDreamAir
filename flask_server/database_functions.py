@@ -1,19 +1,13 @@
-""""
+""" "
 
 All data base functions go here V
 
 add_to_json : this takes one arguments and will attempt to add it to the json file
 
-create_db : has no arguments will create the initial state of the database 
+create_db : has no arguments will create the initial state of the database
 and clear if it has any data
 
 """
-
-
-
-
-
-
 
 import json
 import os
@@ -24,62 +18,51 @@ DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.json")
 
 def add_to_booking(data):
 
-    with open(DB, 'r+') as f:
+    with open(DB, "r+") as f:
         file_data = json.load(f)
         file_data["bookingDetails"].append(data)
         f.seek(0)
         json.dump(file_data, f, indent=4)
-        
-    
+
 
 def create_db():
     x = input("WARNING: this will clear the json file (y/n) to continue: ")
     if x.lower() == "n":
-        return 
-    
+        return
+
     # initial state for database
-    dbdata = {
-        "bookingDetails" :[
-
-        ],
-        "users": [
-
-        ]
-            
-
-    }
+    dbdata = {"bookingDetails": [], "users": []}
     print(DB)
     with open(DB, "w") as f:
         json.dump(dbdata, f, indent=4)
 
 
 def user_exists(username):
-    with open(DB, 'r') as f:
+    with open(DB, "r") as f:
         file_data = json.load(f)
         for user in file_data["users"]:
             if user["username"] == username:
                 return True
     return False
 
-def add_user(data):
 
-    with open(DB, 'r+') as f:
+def add_user(username, password, email):
+
+    with open(DB, "r+") as f:
         file_data = json.load(f)
+        data = {"username": username, "password": password, "email": email}
         file_data["users"].append(data)
         f.seek(0)
         json.dump(file_data, f, indent=4)
-        
-    
+
 
 def attempt_login(username, password):
-    with open(DB, 'r') as f:
+    with open(DB, "r") as f:
         file_data = json.load(f)
         for i in file_data["users"]:
             if i["username"] == username and i["password"] == password:
                 return True
     return False
-
-
 
 
 if __name__ == "__main__":
