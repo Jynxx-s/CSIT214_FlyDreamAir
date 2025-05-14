@@ -31,7 +31,7 @@ def create_db():
         return
 
     # initial state for database
-    dbdata = {"bookingDetails": [], "users": []}
+    dbdata = {"bookingDetails": [], "users": [], "flights": []}
     print(DB)
     with open(DB, "w") as f:
         json.dump(dbdata, f, indent=4)
@@ -63,6 +63,44 @@ def attempt_login(username, password):
             if i["username"] == username and i["password"] == password:
                 return True
     return False
+
+
+def get_flights():
+    flights = []
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        for i in file_data["flights"]:
+            flights.append({"destination": i["destination"], "depart": i["depart"]})
+        return flights
+
+
+def add_flight(destination, depart, rows, cols):
+    """
+    flight data:
+    {
+    destination : "<destination>",
+    depart : "<depart>",
+    seats : "<[
+        [a1, a2, a3, a4, a5, a6],
+        [b1, b2, b3, b4, b5, b6],
+        [c1, c2, c3, c4, c5, c6],
+        [d1, d2, d3, d4, d5, d6],
+        [e1, e2, e3, e4, e5, e6],
+        [f1, f2, f3, f4, f5, f6]
+    ]>"
+
+    }
+    """
+
+    seats = (
+        lambda r, c: [[f"{chr(97 + i)}{j+1}" for j in range(c)] for i in range(r)]
+    )(cols, rows)
+    data = {"destination": destination, "depart": depart, "seats": seats}
+    with open(DB, "r+") as f:
+        file_data = json.load(f)
+        file_data["flights"].append(data)
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
 
 
 if __name__ == "__main__":

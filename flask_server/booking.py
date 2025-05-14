@@ -29,3 +29,9 @@ def create_booking():
     dbf.add_to_booking(data)
     
     return jsonify({"message" : "it worked"}), 200
+
+
+@booking_bp.route('/get_flights', methods=["GET"])
+def get_flights():
+    flights = dbf.get_flights()
+    return jsonify({"flights" : flights})
