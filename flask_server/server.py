@@ -1,42 +1,40 @@
-from flask import Flask, render_template, redirect, url_for, session, request
-from booking import booking_bp
-from register_user import register_user_bp
-import requests as rqst
-
-from login import login_required
 import database_functions as dbf
+import requests as rqst
+from booking import booking_bp
+from flask import Flask, redirect, render_template, request, session, url_for
+from login import login_required
+from register_user import register_user_bp
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
-app.register_blueprint(booking_bp, url_prefix='/booking')
-app.register_blueprint(register_user_bp, url_prefix='/register')
+app.register_blueprint(booking_bp, url_prefix="/booking")
+app.register_blueprint(register_user_bp, url_prefix="/register")
 app.secret_key = "123"
 
 
-
-
-
-
-@app.route('/home')
+@app.route("/home")
 @login_required
 def home():
-    return render_template('home.html')
-  
+    return render_template("home.html")
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
         if dbf.attempt_login(username, password):
-            session['username'] = username
-            return redirect(url_for('home'))
+            session["username"] = username
+            return redirect(url_for("home"))
         else:
-            return redirect(url_for('login'))
-    return render_template('login.html')  # Render the login page for GET requests
+            return redirect(url_for("login"))
+    return render_template("login.html")  # Render the login page for GET requests
 
-@app.route('/')
+
+@app.route("/")
 def base():
-    return redirect(url_for('home'))
+    return redirect(url_for("home"))
+
+
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)

@@ -32,3 +32,14 @@ body {
   transform: scale(1.05);
   /* Increases size by 5% */
 }
+
+input {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(200, 0, 255);
+}
+button {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(200, 0, 255);
+}
