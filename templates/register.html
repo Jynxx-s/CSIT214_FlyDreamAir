@@ -16,7 +16,6 @@
         max-width: 400px;
         margin-bottom: 15px;
       }
-
     </style>
   </head>
 
@@ -66,29 +65,7 @@
 
       <div id="feedbackmessage" class="textcenter"></div>
     </div>
-    <script>
-      const feedbackmessage = document.getElementById("feedbackmessage");
-      document
-        .getElementById("register")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const username = document.getElementById("username").value;
-          const password = document.getElementById("password").value;
-          const email = document.getElementById("email").value;
-          fetch("/register/register_user", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password, email }),
-          })
-            .then((res) => {
-              if (res.ok) {
-                return res.json();
-              }
-            })
-            .then((data) => {
-              feedbackmessage.textContent = data.message;
-            });
-        });
-    </script>
+    <script src="../static/register.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
