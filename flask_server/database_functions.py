@@ -74,7 +74,7 @@ def get_flights():
         return flights
 
 
-def add_flight(destination, depart, rows, cols):
+def add_flight(destination, depart, rows):
     """
     flight data:
     {
@@ -94,7 +94,7 @@ def add_flight(destination, depart, rows, cols):
 
     seats = (
         lambda r, c: [[f"{chr(97 + i)}{j+1}" for j in range(c)] for i in range(r)]
-    )(cols, rows)
+    )(6, rows)
     data = {"destination": destination, "depart": depart, "seats": seats}
     with open(DB, "r+") as f:
         file_data = json.load(f)

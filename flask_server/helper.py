@@ -1,12 +1,11 @@
-from database_functions import add_flight 
+from database_functions import add_flight
 
 
 def main():
     dest = input("desination: ")
     dep = input("departure: ")
     row = int(input("rows: "))
-    cols = int(input("columns: "))
-    add_flight(dest, dep, row, cols)
+    add_flight(dest, dep, row)
 
 
 if __name__ == "__main__":

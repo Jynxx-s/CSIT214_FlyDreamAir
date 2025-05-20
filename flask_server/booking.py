@@ -27,4 +27,4 @@ def create_booking():
 @booking_bp.route("/get_flights", methods=["GET"])
 def get_flights():
     flights = dbf.get_flights()
-    return jsonify({"flights": flights}), 200
+    return jsonify({"message": flights}), 200
