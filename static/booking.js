@@ -15,6 +15,6 @@ const getmyrequest = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   getmyrequest();
 });
