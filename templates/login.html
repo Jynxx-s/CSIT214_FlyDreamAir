@@ -9,23 +9,24 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-    </style>
+    <style></style>
   </head>
 
   <body>
-    <div>
-      <form action="/login" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" />
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" />
-        <input type="submit" value="Submit" />
-      </form>
+    <div style="justify-content: center; display: flex; align-items: center">
       <div>
-        <a href="{{url_for('register_user.register_home')}}">
-          <button class="expand-on-hover" type="button">No Login?</button>
-        </a>
+        <form id="login-form">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" />
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" />
+          <input type="submit" value="Submit" />
+        </form>
+        <div style="justify-content: center; display: flex; padding-top: 30px;">
+          <a href="{{url_for('register_user.register_home')}}">
+            <img src="../static/nologin.png" alt="Register here" />
+          </a>
+        </div>
       </div>
     </div>
   </body>

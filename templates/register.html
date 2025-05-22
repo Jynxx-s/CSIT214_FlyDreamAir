@@ -20,10 +20,10 @@
   </head>
 
   <body class="textcenter">
-    <div class="" style="margin: auto;  justify-items: center;">
+    <div class="" style="margin: auto; justify-items: center">
       <form
         id="register"
-        style="display: block; text-align: center; width: 400px;"
+        style="display: block; text-align: center; width: 400px"
       >
         <div class="input-container input-sized">
           <input
@@ -58,11 +58,16 @@
           />
         </div>
 
+        <div
+          id="feedbackmessage"
+          class="textcenter"
+          style="min-height: 40px"
+        ></div>
         <div class="input-container input-sized">
           <button type="submit" class="expand-on-hover">Register User</button>
         </div>
+        <div id="return-login"></div>
       </form>
-      <div id="feedbackmessage" class="textcenter"></div>
     </div>
     <script src="../static/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

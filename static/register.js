@@ -1,5 +1,7 @@
 const feedbackmessage = document.getElementById("feedbackmessage");
-document.getElementById("register").addEventListener("submit", function (e) {
+const login_return = document.getElementById("return-login");
+
+document.getElementById("register").addEventListener("submit", function(e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
@@ -9,13 +11,18 @@ document.getElementById("register").addEventListener("submit", function (e) {
     const response = await axios.post("/register/register_user", {
       username: username,
       password: password,
-      email: email
+      email: email,
     });
-    if (response){
+    if (response) {
       feedbackmessage.textContent = response.data.message;
+      if (response.status == 201) {
+        login_return.innerHTML = `
+          <a href="/login" class="btn expand-on-hover">Login
+          </a> 
+        `;
+      }
     }
   };
 
   postmyrequest();
-
 });
