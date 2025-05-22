@@ -1,49 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fly Dream Air</title>
-        <style>
-            img {
-                margin: 20px;                
-                border-radius: 20%;           
-                border: 5px solid rgb(13, 138, 154);
-                background-color: aqua;      
-            }
-            .imagesize {
-                width: 100px;
-                height: 100px;
-            }
-            
-        </style>
-        <link rel="stylesheet" href="../static/styles.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fly Dream Air</title>
+    <style>
+      img {
+        margin: 20px;
+        border-radius: 20%;
+        border: 5px solid rgb(13, 138, 154);
+        background-color: aqua;
+      }
 
-    </head>
-    <body>
-        
+      .imagesize {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <link rel="stylesheet" href="../static/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-        
+  <body>
+    <div class="textcenter">
+      <h1 style="margin-bottom: 0px">Fly Dream Air</h1>
+      <p style="margin-top: 0px">the most flight there is</p>
+    </div>
+    <div>
+      <table style="margin: auto; margin-top: 10%">
+        <tr>
+          <td>
+            <a href="{{url_for('booking.booking_home')}}">
+              <img
+                src="../static/book.png"
+                alt="image of seat"
+                class="imagesize"
+              />
+            </a>
+          </td>
 
-        <div class="textcenter">
-            <h1 style="margin-bottom: 0px;">Fly Dream Air</h1>
-            <p style="margin-top: 0px;">the most flight there is</p>
-        </div>
-        <div>
-            <table style="margin: auto; margin-top: 10%;">
-                <tr >
-                    <td >
-                        <a href="{{url_for('booking.booking_home')}}">
-                            <img src="../static/book.png" alt="image of seat" class="imagesize">
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <img src="../static/seat.png" alt="image of seat" class="imagesize">
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </body>
+          <td>
+            <img
+              src="../static/seat.png"
+              alt="image of seat"
+              class="imagesize"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>

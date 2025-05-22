@@ -1,70 +1,48 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register User</title>
 
-    <link rel="stylesheet" href="../static/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .input-sized {
-        width: 100%;
-        max-width: 400px;
-        margin-bottom: 15px;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register User</title>
 
-  <body class="textcenter">
-    <div class="" style="margin: auto;  justify-items: center;">
-      <form
-        id="register"
-        style="display: block; text-align: center; width: 400px;"
-      >
-        <div class="input-container input-sized">
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
-            required
-            class="expand-on-hover"
-          />
-        </div>
+  <link rel="stylesheet" href="../static/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style></style>
+</head>
 
-        <div class="input-container input-sized">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            required
-            class="expand-on-hover"
-          />
-        </div>
-
-        <div class="input-container input-sized">
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email@flydreamair.com"
-            required
-            class="expand-on-hover"
-          />
-        </div>
-
-        <div class="input-container input-sized">
-          <button type="submit" class="expand-on-hover">Register User</button>
-        </div>
-      </form>
-      <div id="feedbackmessage" class="textcenter"></div>
+<body class="textcenter">
+  <div class="floating-box">
+    <div>
+      <h1 class="title-box">Fly Dream Air</h1>
     </div>
-    <script src="../static/register.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </body>
+    <form id="register" method="POST" style="display: block; text-align: center; width: 500px; margin: 0 auto">
+      <div class="input-container input-sized">
+        <input type="text" name="username" id="username" placeholder="Username" required
+          class="expand-on-hover input-cool" />
+      </div>
+
+      <div class="input-container input-sized">
+        <input type="password" name="password" id="password" placeholder="Password" required
+          class="expand-on-hover input-cool" />
+      </div>
+
+      <div class="input-container input-sized">
+        <input type="email" name="email" id="email" placeholder="Email@flydreamair.com" required
+          class="expand-on-hover input-cool" />
+      </div>
+
+      <div id="feedbackmessage" class="textcenter" style="min-height: 40px"></div>
+      <div class="input-container input-sized">
+        <button type="submit" class="expand-on-hover button-cool">
+          Register User
+        </button>
+      </div>
+      <div id="return-login"></div>
+    </form>
+  </div>
+  <script src="../static/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
 </html>
