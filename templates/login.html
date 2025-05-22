@@ -1,33 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style></style>
-  </head>
 
-  <body>
-    <div style="justify-content: center; display: flex; align-items: center">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="../static/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style></style>
+</head>
+
+<body>
+  <div style="justify-content: center; display: flex; align-items: center">
+    <div class="floating-box">
       <div>
-        <form id="login-form">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" />
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" />
-          <input type="submit" value="Submit" />
-        </form>
-        <div style="justify-content: center; display: flex; padding-top: 30px;">
+        <h1 class="title-box">Fly Dream Air</h1>
+      </div>
+      <form id="login-form" method="POST" style="display: block; text-align: center; width: 500px;">
+        <div class="input-container input-sized">
+          <input type="text" name="username" id="username" placeholder="Username" class="expand-on-hover input-cool" />
+        </div>
+        <div class="input-container input-sized">
+          <input type="password" name="password" id="password" placeholder="Password"
+            class="expand-on-hover input-cool" />
+        </div>
+
+        <div class="input-container input-sized">
+          <button type="submit" class="expand-on-hover button-cool">
+            Login
+          </button>
+        </div>
+        <div style="justify-content: center; display: flex; padding-top: 30px">
           <a href="{{url_for('register_user.register_home')}}">
-            <img src="../static/nologin.png" alt="Register here" />
+            <img src="../static/nologin.png" alt="Register here" style="width: 200px; border-radius: 6px;" class="expand-on-hover "/>
           </a>
         </div>
-      </div>
+      </form>
     </div>
-  </body>
+  </div>
+
+  <script src="../static/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
 </html>

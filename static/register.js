@@ -17,7 +17,7 @@ document.getElementById("register").addEventListener("submit", function(e) {
       feedbackmessage.textContent = response.data.message;
       if (response.status == 201) {
         login_return.innerHTML = `
-          <a href="/login" class="btn expand-on-hover">Login
+          <a href="/login" class="expand-on-hover btn">Go to Login
           </a> 
         `;
       }
