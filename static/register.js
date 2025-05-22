@@ -1,4 +1,8 @@
 const feedbackmessage = document.getElementById("feedbackmessage");
+
+const login_return = document.getElementById("return-login");
+
+
 document.getElementById("register").addEventListener("submit", function(e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
@@ -13,6 +17,12 @@ document.getElementById("register").addEventListener("submit", function(e) {
     });
     if (response) {
       feedbackmessage.textContent = response.data.message;
+      if (response.status == 201) {
+        login_return.innerHTML = `
+          <a href="/login" class="expand-on-hover btn">Go to Login
+          </a> 
+        `;
+      }
     }
   };
 
