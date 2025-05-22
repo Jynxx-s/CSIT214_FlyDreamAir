@@ -1,28 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking</title>
-    <style>
-
-    </style>
-    <link rel="stylesheet" href="../static/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking</title>
+  <style></style>
+  <link rel="stylesheet" href="../static/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style></style>
 </head>
+
 <body>
-    <div class="textcenter" style="width: 60%;">
-        <h1>welcome to the booking page</h1>
-        <form action="/booking/create_booking" method="POST" class="input-container">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name">
-            <label for="email">email:</label>
-            <input type="email" name="email" id="email">
-            <label for="seat">seat number:</label>
-            <input type="text" name="snum" id="snum">
-            <input type="submit" value="Submit" class="input-container" style="align-items: center;">
-        </form>
-    </div>
+  <div class="textcenter" style="width: 60%">
+    <h1>welcome to the booking page</h1>
+    <form action="/booking/create_booking" method="POST" class="input-container">
+      <input type="text" name="name" id="name" placeholder="Name" class="expand-on-hover" />
+      <input type="email" name="email" id="email" placeholder="Email" class="expand-on-hover" />
+      <input type="text" name="snum" id="snum" placeholder="Seat Number" class="expand-on-hover" />
+      <input type="submit" value="Submit" class="input-container" style="align-items: center" class="expand-on-hover" />
+    </form>
+  </div>
+  <div class="" style="justify-items: center">
+    <select id="available-flights"></select>
+  </div>
+
+  <script src="../static/booking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
+
 </html>

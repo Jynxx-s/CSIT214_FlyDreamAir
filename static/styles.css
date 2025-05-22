@@ -55,6 +55,7 @@ body::before {
   /* Increases size by 5% */
 }
 
+
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -165,4 +166,5 @@ body::before {
   box-shadow:
     0 8px 16px rgba(0, 0, 0, 0.3),
     0 4px 6px rgba(0, 0, 0, 0.2);
+
 }
