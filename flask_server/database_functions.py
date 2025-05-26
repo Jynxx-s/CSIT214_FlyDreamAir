@@ -16,14 +16,6 @@ import os
 DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.json")
 
 
-def add_to_booking(data):
-
-    with open(DB, "r+") as f:
-        file_data = json.load(f)
-        file_data["bookingDetails"].append(data)
-        f.seek(0)
-        json.dump(file_data, f, indent=4)
-
 
 def create_db():
     x = input("WARNING: this will clear the json file (y/n) to continue: ")
@@ -31,7 +23,13 @@ def create_db():
         return
 
     # initial state for database
-    dbdata = {"bookingDetails": [], "users": [], "flights": []}
+    dbdata = {
+        "bookingDetails": [],
+        "users": [],
+        "flights": [],
+        "nextFlightId": 0,
+        "nextBookingId": 0,
+    }
     print(DB)
     with open(DB, "w") as f:
         json.dump(dbdata, f, indent=4)
@@ -70,37 +68,103 @@ def get_flights():
     with open(DB, "r") as f:
         file_data = json.load(f)
         for i in file_data["flights"]:
-            flights.append({"destination": i["destination"], "depart": i["depart"]})
-        return flights
+            flights.append({"destination": i["destination"], "depart": i["depart"], "flight_id": i["flight_id"]})
+    return flights
 
+
+def get_next_flight_id():
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        file_data["nextFlightId"] += 1
+        with open(DB, "w") as f:
+            json.dump(file_data, f, indent=4)
+        return file_data["nextFlightId"] - 1
+
+
+def add_flight_booking(flight_id, username, email, seats):
+    """
+    booking :
+    {
+        booking_id : <booking_id>,
+        flight_id : <flight_id>,
+        seats : ["a1", "a2", "a3", "b1", "b2", "b3"],
+        username : "<username>",
+        email : "<email>",
+    }
+    """
+    booking_id = get_next_booking_id()
+    data = {
+        "booking_id": booking_id,
+        "flight_id": flight_id,
+        "username": username,
+        "email": email,
+        "seats": seats,
+    }
+    with open(DB, "r+") as f:
+        file_data = json.load(f)
+        file_data["bookingDetails"].append(data)
+
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
+
+
+def get_next_booking_id():
+    with open(DB, "r+") as f:
+        file_data = json.load(f)
+        file_data["nextBookingId"] += 1
+        next_id = file_data["nextBookingId"]
+
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
+        f.truncate()
+
+    return next_id - 1
 
 def add_flight(destination, depart, rows):
     """
     flight data:
     {
-    destination : "<destination>",
-    depart : "<depart>",
-    seats : "<[
-        [a1, a2, a3, a4, a5, a6],
-        [b1, b2, b3, b4, b5, b6],
-        [c1, c2, c3, c4, c5, c6],
-        [d1, d2, d3, d4, d5, d6],
-        [e1, e2, e3, e4, e5, e6],
-        [f1, f2, f3, f4, f5, f6]
-    ]>"
+        flight_id : <id>,
+        destination : "<destination>",
+        depart : "<depart>",
 
+        "seats": [
+            {"a1": "a", "a2": "a", "a3": "a", "a4": "a", "a5": "a", "a6": "a"},
+            {"b1": "a", "b2": "a", "b3": "a", "b4": "a", "b5": "a", "b6": "a"},
+            {"c1": "a", "c2": "a", "c3": "a", "c4": "a", "c5": "a", "c6": "a"},
+            {"d1": "a", "d2": "a", "d3": "a", "d4": "a", "d5": "a", "d6": "a"},
+            {"e1": "a", "e2": "a", "e3": "a", "e4": "a", "e5": "a", "e6": "a"},
+            {"f1": "a", "f2": "a", "f3": "a", "f4": "a", "f5": "a", "f6": "a"}
+        ]
     }
     """
-
-    seats = (
-        lambda r, c: [[f"{chr(97 + i)}{j+1}" for j in range(c)] for i in range(r)]
-    )(6, rows)
-    data = {"destination": destination, "depart": depart, "seats": seats}
+    id = get_next_flight_id()
+    seats = [{f"{chr(97 + i)}{j+1}": "a" for j in range(6)} for i in range(rows)]
+    data = {
+        "flight_id": id,
+        "destination": destination,
+        "depart": depart,
+        "seats": seats,
+    }
     with open(DB, "r+") as f:
         file_data = json.load(f)
         file_data["flights"].append(data)
         f.seek(0)
         json.dump(file_data, f, indent=4)
+
+def get_email(username):
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        for i in file_data["users"]:
+            if i["username"] == username:
+                return i["email"]
+
+def get_seats(flight_id):
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        for i in file_data["flights"]:
+            if i["flight_id"] == flight_id:
+                return i["seats"]
 
 
 if __name__ == "__main__":

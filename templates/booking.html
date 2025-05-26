@@ -8,23 +8,37 @@
   <style></style>
   <link rel="stylesheet" href="../static/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <style></style>
+  <style>
+    #seats-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .row-div {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="textcenter" style="width: 60%">
-    <h1>welcome to the booking page</h1>
-    <form action="/booking/create_booking" method="POST" class="input-container">
-      <input type="text" name="name" id="name" placeholder="Name" class="expand-on-hover" />
-      <input type="email" name="email" id="email" placeholder="Email" class="expand-on-hover" />
-      <input type="text" name="snum" id="snum" placeholder="Seat Number" class="expand-on-hover" />
-      <input type="submit" value="Submit" class="input-container" style="align-items: center" class="expand-on-hover" />
-    </form>
+  <div style="justify-content: center; display: flex; align-items: center">
+    <div class="textcenter floating-box">
+      <h1 class="title-box">welcome to the booking page</h1>
+      <div class="" style="justify-items: center">
+        <select id="available-flights"></select>
+      </div>
+      <div id="seats-div"></div>
+      <div>
+        <button type="submit" id="book_flight" class="expand-on-hover button-cool">
+          Book Flight
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="" style="justify-items: center">
-    <select id="available-flights"></select>
-  </div>
-
   <script src="../static/booking.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>

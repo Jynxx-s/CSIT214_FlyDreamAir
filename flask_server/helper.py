@@ -1,12 +1,10 @@
-from database_functions import add_flight
+from database_functions import add_flight, add_user 
 
 
-def main():
-    dest = input("desination: ")
-    dep = input("departure: ")
-    row = int(input("rows: "))
-    add_flight(dest, dep, row)
-
+def fill_db():
+    add_flight("USA", "AUS", 8)
+    add_flight("CHI", "SYD", 10)
+    add_user("admin", "admin", "admin@flydreamair.com")
 
 if __name__ == "__main__":
-    main()
+    fill_db()
