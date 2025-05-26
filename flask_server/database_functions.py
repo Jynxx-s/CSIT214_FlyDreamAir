@@ -12,6 +12,7 @@ and clear if it has any data
 import json
 import os
 
+
 # gets the path for database file
 DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.json")
 
@@ -203,6 +204,55 @@ def mark_seats_available(flight_id, selected_seats):
         f.seek(0)
         json.dump(file_data, f, indent=4)
         f.truncate()
+
+
+def get_dest_dep(flight_id):
+    res = []
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        for i in file_data["flights"]:
+            if i["flight_id"] == int(flight_id):
+                res.append(i["destination"])
+                res.append(i["depart"])
+    return res
+
+def get_bookings(username):
+    bookings =[]
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        for i in file_data["bookingDetails"]:
+            if i["username"] == username:
+                x = get_dest_dep(i["flight_id"])
+                bookings.append({
+                    "destinaton" : x[0],
+                    "departure" : x[1],
+                    "seats" : i["seats"],
+                    "booking_id": i["booking_id"]
+                    
+
+                })
+    return bookings
+
+def delete_booking(booking_id):
+    booking_id = int(booking_id) 
+
+    with open(DB, "r") as f:
+        data = json.load(f)
+
+    for i in data["bookingDetails"]:
+        print(booking_id)
+        if int(i["booking_id"]) == booking_id:
+            print("asdasasdasd")
+            flight_id = i["flight_id"]
+            seats = i["seats"]
+            print(seats, type(seats), flight_id, type(flight_id))
+            mark_seats_available(flight_id, seats)
+
+    data["bookingDetails"] = [
+        b for b in data["bookingDetails"] if b["booking_id"] != booking_id
+    ]
+    with open(DB, "w") as f:
+        json.dump(data, f, indent=4)
 
 
 if __name__ == "__main__":

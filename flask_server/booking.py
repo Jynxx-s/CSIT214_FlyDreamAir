@@ -11,6 +11,12 @@ def booking_home():
     return render_template("booking.html")
 
 
+@booking_bp.route("/manage")
+@login_required
+def booking_manage():
+    return render_template("manage_booking.html")
+
+
 @booking_bp.route("/create_booking", methods=["POST"])
 def create_booking():
     data = request.get_json()
@@ -32,6 +38,31 @@ def get_flights():
 def get_seats():
     data = request.get_json()
     seats = dbf.get_seats(int(data["flight_id"]))
-    print(data["flight_id"])
 
     return jsonify({"message": seats}), 200
+
+
+@booking_bp.route("get_bookings", methods=["GET"])
+def get_booking():
+    bookings = dbf.get_bookings(session["username"])
+    return jsonify({"message": bookings}), 200
+
+
+@booking_bp.route("delete_booking", methods=["POST"])
+def delete_booking():
+    data = request.get_json()
+    dbf.delete_booking(int(data["booking_id"]))
+    return jsonify({"message": "deleted"}), 204
+
+
+
+
+
+
+
+
+
+
+
+
+
