@@ -1,4 +1,4 @@
-""" "
+""" 
 
 All data base functions go here V
 
@@ -14,7 +14,6 @@ import os
 
 # gets the path for database file
 DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.json")
-
 
 
 def create_db():
@@ -68,7 +67,13 @@ def get_flights():
     with open(DB, "r") as f:
         file_data = json.load(f)
         for i in file_data["flights"]:
-            flights.append({"destination": i["destination"], "depart": i["depart"], "flight_id": i["flight_id"]})
+            flights.append(
+                {
+                    "destination": i["destination"],
+                    "depart": i["depart"],
+                    "flight_id": i["flight_id"],
+                }
+            )
     return flights
 
 
@@ -120,6 +125,7 @@ def get_next_booking_id():
 
     return next_id - 1
 
+
 def add_flight(destination, depart, rows):
     """
     flight data:
@@ -152,6 +158,7 @@ def add_flight(destination, depart, rows):
         f.seek(0)
         json.dump(file_data, f, indent=4)
 
+
 def get_email(username):
     with open(DB, "r") as f:
         file_data = json.load(f)
@@ -159,21 +166,39 @@ def get_email(username):
             if i["username"] == username:
                 return i["email"]
 
+
 def get_seats(flight_id):
     with open(DB, "r") as f:
         file_data = json.load(f)
         for i in file_data["flights"]:
             if i["flight_id"] == flight_id:
                 return i["seats"]
+
+
 def mark_seats_unavailable(flight_id, selected_seats):
     with open(DB, "r+") as f:
         file_data = json.load(f)
         for flight in file_data["flights"]:
             if flight["flight_id"] == flight_id:
-                for row in flight["seats"]:  # row is a dict
+                for row in flight["seats"]:
                     for seat in row:
                         if seat in selected_seats:
-                            row[seat] = "u"    
+                            row[seat] = "u"
+
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
+        f.truncate()
+
+
+def mark_seats_available(flight_id, selected_seats):
+    with open(DB, "r+") as f:
+        file_data = json.load(f)
+        for flight in file_data["flights"]:
+            if flight["flight_id"] == flight_id:
+                for row in flight["seats"]:
+                    for seat in row:
+                        if seat in selected_seats:
+                            row[seat] = "a"
 
         f.seek(0)
         json.dump(file_data, f, indent=4)
