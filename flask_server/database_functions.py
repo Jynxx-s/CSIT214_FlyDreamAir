@@ -103,16 +103,22 @@ def add_flight_booking(flight_id, username, email, seats):
     with open(DB, "r+") as f:
         file_data = json.load(f)
         file_data["bookingDetails"].append(data)
+
+        f.seek(0)
         json.dump(file_data, f, indent=4)
 
 
 def get_next_booking_id():
-    with open(DB, "r") as f:
+    with open(DB, "r+") as f:
         file_data = json.load(f)
         file_data["nextBookingId"] += 1
-        with open(DB, "w") as f:
-            json.dump(file_data, f, indent=4)
-        return file_data["nextBookingId"] - 1
+        next_id = file_data["nextBookingId"]
+
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
+        f.truncate()
+
+    return next_id - 1
 
 def add_flight(destination, depart, rows):
     """
