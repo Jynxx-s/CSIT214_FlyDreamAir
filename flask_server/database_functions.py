@@ -191,20 +191,13 @@ def mark_seats_unavailable(flight_id, selected_seats):
         f.truncate()
 
 
-def mark_seats_available(flight_id, selected_seats):
-    with open(DB, "r+") as f:
-        file_data = json.load(f)
-        for flight in file_data["flights"]:
-            if flight["flight_id"] == flight_id:
-                for row in flight["seats"]:
-                    for seat in row:
-                        if seat in selected_seats:
-                            row[seat] = "a"
-
-        f.seek(0)
-        json.dump(file_data, f, indent=4)
-        f.truncate()
-
+def mark_seats_available(flight_id, selected_seats, file_data):
+    for flight in file_data["flights"]:
+        if flight["flight_id"] == flight_id:
+            for row in flight["seats"]:
+                for seat in row:
+                    if seat in selected_seats:
+                        row[seat] = "a"
 
 def get_dest_dep(flight_id):
     res = []
@@ -234,23 +227,20 @@ def get_bookings(username):
     return bookings
 
 def delete_booking(booking_id):
-    booking_id = int(booking_id) 
+    booking_id = int(booking_id)
 
     with open(DB, "r") as f:
         data = json.load(f)
 
     for i in data["bookingDetails"]:
-        print(booking_id)
-        if int(i["booking_id"]) == booking_id:
-            print("asdasasdasd")
-            flight_id = i["flight_id"]
-            seats = i["seats"]
-            print(seats, type(seats), flight_id, type(flight_id))
-            mark_seats_available(flight_id, seats)
+        if i["booking_id"] == booking_id:
+            mark_seats_available(i["flight_id"], i["seats"], data)
+            break
 
     data["bookingDetails"] = [
         b for b in data["bookingDetails"] if b["booking_id"] != booking_id
     ]
+
     with open(DB, "w") as f:
         json.dump(data, f, indent=4)
 
