@@ -187,3 +187,6 @@ body::before {
   background-color: 1b1b29;
   color: green;
 }
+.unavailable {
+  color: red;
+}

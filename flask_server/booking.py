@@ -16,8 +16,9 @@ def create_booking():
     data = request.get_json()
 
     dbf.add_flight_booking(
-        data["flight_id"], session["username"], session["email"], data["seats"]
+        int(data["flight_id"]), session["username"], session["email"], data["seats"]
     )
+    dbf.mark_seats_unavailable(int(data["flight_id"]), data["seats"])
     return jsonify({"message": "Thank you for booking"}), 200
 
 

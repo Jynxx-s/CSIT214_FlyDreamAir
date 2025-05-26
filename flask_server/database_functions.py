@@ -165,6 +165,19 @@ def get_seats(flight_id):
         for i in file_data["flights"]:
             if i["flight_id"] == flight_id:
                 return i["seats"]
+def mark_seats_unavailable(flight_id, selected_seats):
+    with open(DB, "r+") as f:
+        file_data = json.load(f)
+        for flight in file_data["flights"]:
+            if flight["flight_id"] == flight_id:
+                for row in flight["seats"]:  # row is a dict
+                    for seat in row:
+                        if seat in selected_seats:
+                            row[seat] = "u"    
+
+        f.seek(0)
+        json.dump(file_data, f, indent=4)
+        f.truncate()
 
 
 if __name__ == "__main__":
