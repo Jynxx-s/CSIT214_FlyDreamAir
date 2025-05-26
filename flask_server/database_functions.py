@@ -16,14 +16,6 @@ import os
 DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.json")
 
 
-def add_to_booking(data):
-
-    with open(DB, "r+") as f:
-        file_data = json.load(f)
-        file_data["bookingDetails"].append(data)
-        f.seek(0)
-        json.dump(file_data, f, indent=4)
-
 
 def create_db():
     x = input("WARNING: this will clear the json file (y/n) to continue: ")
@@ -76,8 +68,8 @@ def get_flights():
     with open(DB, "r") as f:
         file_data = json.load(f)
         for i in file_data["flights"]:
-            flights.append({"destination": i["destination"], "depart": i["depart"]})
-        return flights
+            flights.append({"destination": i["destination"], "depart": i["depart"], "flight_id": i["flight_id"]})
+    return flights
 
 
 def get_next_flight_id():
@@ -108,9 +100,10 @@ def add_flight_booking(flight_id, username, email, seats):
         "email": email,
         "seats": seats,
     }
-    with open(DB, "w") as f:
+    with open(DB, "r+") as f:
         file_data = json.load(f)
         file_data["bookingDetails"].append(data)
+        json.dump(file_data, f, indent=4)
 
 
 def get_next_booking_id():
@@ -140,7 +133,7 @@ def add_flight(destination, depart, rows):
     }
     """
     id = get_next_flight_id()
-    seats = [{f"{chr(97 + i)}{j+1}": "a" for j in range(rows)} for i in range(5)]
+    seats = [{f"{chr(97 + i)}{j+1}": "a" for j in range(6)} for i in range(rows)]
     data = {
         "flight_id": id,
         "destination": destination,
@@ -159,6 +152,13 @@ def get_email(username):
         for i in file_data["users"]:
             if i["username"] == username:
                 return i["email"]
+
+def get_seats(flight_id):
+    with open(DB, "r") as f:
+        file_data = json.load(f)
+        for i in file_data["flights"]:
+            if i["flight_id"] == flight_id:
+                return i["seats"]
 
 
 if __name__ == "__main__":

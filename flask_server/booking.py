@@ -15,14 +15,22 @@ def booking_home():
 def create_booking():
     data = request.get_json()
 
-    dbf.add_flight_booking(data["flight_id"], session["username"], session["email"], data["seats"])
+    dbf.add_flight_booking(
+        data["flight_id"], session["username"], session["email"], data["seats"]
+    )
     return jsonify({"message": "Thank you for booking"}), 200
-
-
-
 
 
 @booking_bp.route("/get_flights", methods=["GET"])
 def get_flights():
     flights = dbf.get_flights()
     return jsonify({"message": flights}), 200
+
+
+@booking_bp.route("/get_seats", methods=["POST"])
+def get_seats():
+    data = request.get_json()
+    seats = dbf.get_seats(int(data["flight_id"]))
+    print(data["flight_id"])
+
+    return jsonify({"message": seats}), 200
