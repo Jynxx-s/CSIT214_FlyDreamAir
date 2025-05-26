@@ -25,6 +25,7 @@ def login():
         password = request.form.get("password")
         if dbf.attempt_login(username, password):
             session["username"] = username
+            session["email"] = dbf.get_email(username)
             return redirect(url_for("home"))
         else:
             return redirect(url_for("login"))

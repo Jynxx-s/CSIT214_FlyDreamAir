@@ -1,5 +1,5 @@
 import database_functions as dbf
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request, session
 from login import login_required
 
 booking_bp = Blueprint("booking", __name__)
@@ -13,15 +13,13 @@ def booking_home():
 
 @booking_bp.route("/create_booking", methods=["POST"])
 def create_booking():
-    name = request.form.get("name")
-    email = request.form.get("email")
-    snum = request.form.get("snum")
+    data = request.get_json()
 
-    data = {"name": name, "email": email, "snum": snum}
+    dbf.add_flight_booking(data["flight_id"], session["username"], session["email"], data["seats"])
+    return jsonify({"message": "Thank you for booking"}), 200
 
-    dbf.add_to_booking(data)
 
-    return jsonify({"message": "it worked"}), 200
+
 
 
 @booking_bp.route("/get_flights", methods=["GET"])
