@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In Flight Services</title>
+  <style></style>
+  <link rel="stylesheet" href="../static/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    #seats-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .row-div {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="textcenter floating-box" style="justify-content: center; align-items: center">
+    <h1 class="title-box">Choose Your In-Flight Services</h1>
+    <div style="justify-items: center">
+      <div id="seats-div"></div>
+      <div>
+        <table style="margin: auto; margin-top: 10%">
+          <tr>
+            <td>Pasta</td>
+            <td>Roast</td>
+            <td>Steak</td>
+          </tr>
+          <tr>
+            <td class="button-cool expand-on-hover">
+                <img
+                  src="../static/pasta.png"
+                  alt="image of seat"
+                  class="imagesize"
+                  style="width: 100px;"
+                />
+              </a>
+            </td>
+
+            <td class="button-cool expand-on-hover">
+              <img
+                src="../static/roast.png"
+                alt="image of seat"
+                class="imagesize"
+                style="width: 100px;"
+              />
+            </td>
+
+            <td class="button-cool expand-on-hover">
+              <img
+                src="../static/steak.png"
+                alt="image of seat"
+                class="imagesize"
+                style="width: 100px;"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Alcohol</td>
+            <td>Soft Drinks</td>
+            <td>Water</td>
+          </tr>
+          <tr>
+            <td class="button-cool expand-on-hover">
+                <img
+                  src="../static/alcohol.png"
+                  alt="image of seat"
+                  class="imagesize"
+                  style="width: 100px;"
+                />
+              </a>
+            </td>
+
+            <td class="button-cool expand-on-hover">
+              <img
+                src="../static/soft_drinks.png"
+                alt="image of seat"
+                class="imagesize"
+                style="width: 100px;"
+              />
+            </td>
+
+            <td class="button-cool expand-on-hover">
+              <img
+                src="../static/water.png"
+                alt="image of seat"
+                class="imagesize"
+                style="width: 100px;"
+              />
+            </td>
+          </tr>
+        </table>
+        <br>
+        <button class="button-cool expand-on-hover">Confirm Choices</button>
+      </div>
+    </div>
+  </div>
+  <script src="../static/booking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </div>
+  </div>
+      
+</body>
+
+</html>

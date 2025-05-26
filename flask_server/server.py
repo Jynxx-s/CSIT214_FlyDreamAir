@@ -37,5 +37,10 @@ def base():
     return redirect(url_for("home"))
 
 
+@app.route("/food")
+@login_required
+def food():
+    return render_template("food.html")
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
