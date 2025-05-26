@@ -76,6 +76,7 @@ document.getElementById("book_flight").addEventListener("click", function(e) {
       seats : selectedSeats,
       flight_id : bflight_id,
     });
+    window.location.href = "/booking/manage"
   };
 
   postmyrequest();
