@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,31 +25,47 @@
   </head>
 
   <body>
-    <div class="textcenter">
-      <h1 style="margin-bottom: 0px">Fly Dream Air</h1>
-      <p style="margin-top: 0px">the most flight there is</p>
-    </div>
-    <div>
-      <table style="margin: auto; margin-top: 10%">
-        <tr>
-          <td>
-            <a href="{{url_for('booking.booking_home')}}">
-              <img
-                src="../static/book.png"
-                alt="image of seat"
-                class="imagesize"
-              />
-            </a>
-          </td>
+    <div class="floating-box">
+      <div class="textcenter title-box">
+        <h1 style="margin-bottom: 0px">Fly Dream Air</h1>
+        <p style="margin-top: 0px; font-size: 20px;">the most flight there is</p>
+      </div>
+      <div>
+        <table style="margin: auto; margin-top: 10%">
+          <tr>
+            <td>
+              <a href="{{url_for('booking.booking_home')}}">
+                <img
+                  src="../static/book.png"
+                  alt="image of seat"
+                  class="imagesize button-cool expand-on-hover"
+                  style="border-radius: 20px; background-color: #ffffff;"
+                />
+              </a>
+            </td>
 
-          <td>
-            <img
-              src="../static/seat.png"
-              alt="image of seat"
-              class="imagesize"
-            />
-          </td>
-        </tr>
-      </table>
+            <td>
+              <a href="/booking/manage">
+                <img
+                  src="../static/seat.png"
+                  alt="image of seat"
+                  class="imagesize button-cool expand-on-hover"
+                  style="border-radius: 20px; background-color: #ffffff;"
+                />
+              </a>
+            </td>
+            <td>
+              <a href="/food"
+                ><img
+                  src="../static/forkandknife.png"
+                  alt="image of fork and knife"
+                  class="imagesize button-cool expand-on-hover"
+                  style="border-radius: 20px; background-color: #ffffff;"
+              /></a>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </body>
+</html>
